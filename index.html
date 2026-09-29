@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buraco Master - Canastra Real</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+
+    <!-- TELA 1: CADASTRO DE APELIDO -->
+    <div id="screen-login" class="screen active">
+        <div class="card">
+            <h1>Buraco Canastra</h1>
+            <input type="text" id="input-nick" placeholder="Digite seu Apelido Único">
+            <button onclick="registerNick()">Entrar no Jogo</button>
+        </div>
+    </div>
+
+    <!-- TELA 2: LOBBY INICIAL -->
+    <div id="screen-lobby" class="screen">
+        <header>
+            <div id="profile-info">
+                <span id="user-display"></span> | <strong id="coins-display">P$ 10.000</strong>
+            </div>
+            <button class="btn-adm" onclick="openAdminModal()">Painel ADM</button>
+        </header>
+
+        <div class="lobby-content">
+            <button onclick="showRules()">📜 Regras do Jogo</button>
+            <button onclick="createRoom(2)">🎴 Sala 1x1 (2 Jogadores)</button>
+            <button onclick="createRoom(4)">🎴 Sala Duplas (4 Jogadores)</button>
+        </div>
+    </div>
+
+    <!-- TELA 3: SELEÇÃO DE ASSENTOS NA MESA -->
+    <div id="screen-room" class="screen">
+        <h2>Mesa de Jogo</h2>
+        <div class="table-container">
+            <div class="table">
+                <div id="seat-0" class="seat" onclick="claimSeat(0)">Lugar 1</div>
+                <div id="seat-1" class="seat" onclick="claimSeat(1)">Lugar 2</div>
+                <div id="seat-2" class="seat" onclick="claimSeat(2)">Lugar 3</div>
+                <div id="seat-3" class="seat" onclick="claimSeat(3)">Lugar 4</div>
+            </div>
+        </div>
+
+        <button id="btn-ready" class="hidden" onclick="setReady()">INICIAR PARTIDA</button>
+        <div id="countdown-display" class="countdown"></div>
+    </div>
+
+    <!-- TELA 4: CAMPO DE JOGO (PARTIDA) -->
+    <div id="screen-game" class="screen">
+        <div class="game-header">
+            <div>Pontos Dupla A: <span id="score-a">0</span> | Dupla B: <span id="score-b">0</span></div>
+            <div>Tempo Restante no Turno: <span id="turn-timer">20</span>s</div>
+        </div>
+
+        <div class="poker-table">
+            <div id="player-top" class="player-slot rotated-180"></div>
+            <div id="player-left" class="player-slot rotated-90"></div>
+            <div id="player-right" class="player-slot rotated-270"></div>
+
+            <div class="table-center">
+                <div id="deck-cava" class="card-back" onclick="cavar()">CAVA</div>
+                <div id="deck-lixo" class="lixo-zone" onclick="pegarLixo()">LIXO</div>
+            </div>
+
+            <div id="player-bottom" class="player-slot my-perspective">
+                <div id="my-cards" class="hand"></div>
+            </div>
+        </div>
+
+        <div class="chat-controls">
+            <button onclick="toggleEmojiPicker()">😀 Emojis</button>
+            <button onclick="toggleChatPicker()">💬 Frases</button>
+        </div>
+
+        <div id="emoji-picker" class="popup hidden">
+            <span onclick="sendReaction('emoji', '😡')">😡 Raiva</span>
+            <span onclick="sendReaction('emoji', '😃')">😃 Alegre</span>
+            <span onclick="sendReaction('emoji', '🥂')">🥂 Brinde</span>
+            <span onclick="sendReaction('emoji', '😍')">😍 Apaixonado</span>
+            <span onclick="sendReaction('emoji', '😢')">😢 Triste</span>
+            <span onclick="sendReaction('emoji', '😒')">😒 Deboche</span>
+            <span onclick="sendReaction('emoji', '👏')">👏 Parabéns</span>
+        </div>
+    </div>
+
+    <!-- MODAL ADMINISTRADOR -->
+    <div id="admin-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Painel do Administrador</h3>
+            <div id="admin-user-list"></div>
+            <button onclick="closeAdminModal()">Fechar</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
