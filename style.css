@@ -1,0 +1,35 @@
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+body { background: #0f172a; color: white; text-align: center; overflow: hidden; }
+
+.screen { display: none; width: 100vw; height: 100vh; flex-direction: column; justify-content: center; align-items: center; }
+.screen.active { display: flex; }
+
+.card { background: #1e293b; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); width: 90%; max-width: 400px; }
+input { width: 100%; padding: 12px; margin: 15px 0; border-radius: 6px; border: none; font-size: 16px; }
+button { background: #22c55e; color: white; border: none; padding: 12px 20px; font-weight: bold; border-radius: 6px; cursor: pointer; margin: 5px; }
+
+.poker-table { width: 95vw; height: 75vh; background: #065f46; border: 12px solid #042f2e; border-radius: 150px; position: relative; margin-top: 10px; display: flex; justify-content: center; align-items: center; }
+.table-center { display: flex; gap: 20px; }
+.card-back, .lixo-zone { width: 70px; height: 100px; border-radius: 6px; border: 2px solid white; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+.card-back { background: #1e3a8a; }
+.lixo-zone { background: rgba(0,0,0,0.3); }
+
+.seat { width: 80px; height: 80px; background: #334155; border: 2px dashed #94a3b8; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; position: absolute; }
+
+#seat-0 { bottom: 10px; }
+#seat-1 { top: 10px; }
+#seat-2 { left: 10px; }
+#seat-3 { right: 10px; }
+
+.my-perspective { position: absolute; bottom: 10px; }
+.rotated-180 { transform: rotate(180deg); position: absolute; top: 10px; }
+.rotated-90 { transform: rotate(90deg); position: absolute; left: 10px; }
+.rotated-270 { transform: rotate(-90deg); position: absolute; right: 10px; }
+
+.playing-card { width: 65px; height: 95px; background: white; border-radius: 6px; color: black; display: flex; flex-direction: column; justify-content: space-between; padding: 4px; font-weight: bold; font-size: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
+.playing-card.red { color: #dc2626; }
+.playing-card.black { color: #000000; }
+.playing-card .suit { font-size: 32px; align-self: center; }
+
+.hidden { display: none !important; }
+.popup { position: absolute; bottom: 60px; background: #1e293b; padding: 10px; border-radius: 8px; display: flex; gap: 10px; }
